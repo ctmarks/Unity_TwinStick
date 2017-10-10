@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject bullet;
     public GameObject bulletSpawner;
+    public GameObject muzzleFlash;
+    public float moveSpeed;
     public float rotationSpeed;
     public float fireRate;
-    public GameObject muzzleFlash;
+    
 
     private float timer = 0;
 
@@ -27,9 +29,39 @@ public class PlayerController : MonoBehaviour {
             PlayerRotate();
         }
 
+        //move player based on axis input, just updating transform.position
+        if (Input.GetAxis("Vertical") != 0) {
+            Vector3 moveVert = new Vector3(0, 0, (Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime));
+            //Vector3 newPosition = moveVert;
+            //newPosition.z = Mathf.Clamp(newPosition.z, -9f, 9f);
+            transform.position += moveVert;
+            Vector3 playerPos = transform.position;
+            if(playerPos.z >= 8) {
+                playerPos.z = 8;
+                transform.position = playerPos;
+            }
+            else if(playerPos.z <= -8) {
+                playerPos.z = -8;
+                transform.position = playerPos;
+            }
+        }
+
+        if (Input.GetAxis("Horizontal") != 0) {
+            Vector3 moveHoriz = new Vector3(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, 0, 0);
+            transform.position += moveHoriz;
+            Vector3 playerPos = transform.position;
+            if (playerPos.x >= 16) {
+                playerPos.x = 16;
+                transform.position = playerPos;
+            } else if (playerPos.x <= -16) {
+                playerPos.x = -16;
+                transform.position = playerPos;
+            }
+        }
+
         //fire bullets when player holds trigger and the fire rate timer is up
         timer += 1 * Time.deltaTime;
-        if (Input.GetAxisRaw("TriggerFire") != 0){
+        if (Input.GetAxisRaw("TriggerFire") != 0 || Input.GetKey(KeyCode.Mouse0)){
                 PlayerFire();
         }
     }
