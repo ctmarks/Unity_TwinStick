@@ -124,3 +124,5 @@ MonoBehaviour:
   speed: 20
   damageEffect: {fileID: 1398696472698990, guid: 38340be3e3680444a8a448a119d1ea0f,
     type: 2}
+  bulletSpark: {fileID: 1398696472698990, guid: 0a9f140c4a30fe445b9b2ac5ea45409a,
+    type: 2}
