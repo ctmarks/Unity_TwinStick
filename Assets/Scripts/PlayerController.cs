@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
         float moveVertical = Input.GetAxisRaw("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        movement = movement.normalized * moveSpeed * Time.deltaTime;
+        movement = movement.normalized * moveSpeed;
         rigid.velocity = movement;
     }
 
