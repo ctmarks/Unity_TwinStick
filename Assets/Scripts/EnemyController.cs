@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour {
 
     public float points;
     public GameController gameController;
+    public ParticleSystem deathEffect;
 
     Transform player;
     NavMeshAgent nav;
@@ -32,7 +33,8 @@ public class EnemyController : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         if(collision.transform.tag == "PlayerBullet") {
-            gameController.AddScore(points);        
+            Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation);
+            gameController.AddScore(points);     
             Destroy(gameObject);
         }
     }
