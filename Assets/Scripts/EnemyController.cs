@@ -5,10 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
+    public float points;
+    public GameController gameController;
+
     Transform player;
     NavMeshAgent nav;
+    
 
-    private void Awake() {
+    void Awake() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
     }
@@ -22,19 +26,14 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
         nav.SetDestination(player.position);
         if (nav.stoppingDistance <= 0) {
-            meleeAttack();
         }
         //transform.rotation = Quaternion.LookRotation(transform.position + player.position);
     }
 
     void OnCollisionEnter(Collision collision) {
-        if(collision.transform.tag == "PlayerBullet") {            
+        if(collision.transform.tag == "PlayerBullet") {
+            gameController.AddScore(points);        
             Destroy(gameObject);
         }
     }
-
-    void meleeAttack() {
-        
-    }
-
 }

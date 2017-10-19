@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour {
         //transform.position += transform.forward * speed * Time.deltaTime;
 	}
 
-    private void OnCollisionEnter(Collision collision) {
+    void OnCollisionEnter(Collision collision) {
         if (collision.transform.tag == "Enemy") {
             Quaternion effectRot = Quaternion.LookRotation(gameObject.transform.forward * -1);
             GameObject blood = Instantiate(damageEffect, collision.contacts[0].point, effectRot);

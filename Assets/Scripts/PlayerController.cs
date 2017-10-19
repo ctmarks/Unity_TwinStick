@@ -23,8 +23,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
     void FixedUpdate() {
-        PlayerMoveRigid();
-        
+        PlayerMoveRigid(); 
     }
 
     // Update is called once per frame
@@ -85,7 +84,6 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetAxisRaw("TriggerFire") != 0 || Input.GetKey(KeyCode.Mouse0)) {
             PlayerFire();
         }
-
     }
 
     void PlayerFire() {
